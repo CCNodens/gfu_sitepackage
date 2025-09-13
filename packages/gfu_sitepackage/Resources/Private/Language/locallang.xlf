@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <header/>
+    <body>
+      <trans-unit id="site_title">
+        <source>GFU Beispielseite</source>
+      </trans-unit>
+        <trans-unit id="footer_left">
+            <source>Footer Left</source>
+        </trans-unit>
+        <trans-unit id="footer_center">
+            <source>Footer Center</source>
+        </trans-unit>
+        <trans-unit id="footer_right">
+            <source>Footer Right</source>
+        </trans-unit>
+        <trans-unit id="startpage">
+            <source>Startpage / Homepage Design</source>
+        </trans-unit>
+        <trans-unit id="subpage">
+            <source>Subpage Design</source>
+        </trans-unit>
+        <trans-unit id="column_top">
+            <source>Top Content</source>
+        </trans-unit>
+        <trans-unit id="column_main">
+            <source>Main Content</source>
+        </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,29 @@
+plugin.tx_gfusitepackage {
+    settings {
+        # cat=plugin.tx_gfusitepackage/typo; type=int+; label=Overall site title
+        siteTitle = GFU Beispielseite
+
+        # cat=plugin.tx_gfusitepackage/links; type=int+; label=Page pid for meta navigation pages
+        metaNavigationPid = 1
+
+        # cat=plugin.tx_gfusitepackage/links; type=int+; label=Page uid with footer pages
+        footerNavigationPid = 1
+
+        # cat=plugin.tx_gfusitepackage/file; type=string; label=Path to Logo file
+        siteLogo = EXT:gfu_sitepackage/Resources/Public/Images/Logo/logo.svg
+
+        # cat=plugin.tx_gfusitepackage/links; type=int+; label=Parent page pid for main navigation to start from
+        startPagePid = 1
+
+    }
+    # Path Constant to be used in Page templates
+    view {
+        # cat=plugin.tx_gfusitepackage/file; type=string; label=Path to layouts root (FE)
+        layoutRootPath = EXT:gfu_sitepackage/Resources/Private/Layouts/
+        # cat=plugin.tx_gfusitepackage/file; type=string; label=Path to templates root (FE)
+        templateRootPath = EXT:gfu_sitepackage/Resources/Private/Templates/Page/
+        # cat=plugin.tx_gfusitepackage/file; type=string; label=Path to partials root (FE)
+        partialRootPath = EXT:gfu_sitepackage/Resources/Private/Partials/
+    }
+}
+

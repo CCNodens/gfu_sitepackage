@@ -1,0 +1,9 @@
+name: gfu/gfu-sitepackage
+label: GfU Sitepackage
+settings:
+  website:
+    background:
+      color: '#386492'
+dependencies:
+  - typo3/fluid-styled-content
+#optionalDependencies:

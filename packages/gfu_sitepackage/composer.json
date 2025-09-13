@@ -1,0 +1,23 @@
+{
+  "name": "gfu/gfu_sitepackage",
+  "type": "typo3-cms-extension",
+  "description": "gfu sitepackage for TYPO3 v13 - simple starting point",
+  "license": "GPL-2.0-or-later",
+  "version": "13.4.1",
+  "require": {
+    "typo3/cms-core": "^13"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gfu\\GfuSitepackage\\": "Classes/"
+    }
+  },
+  "replace": {
+    "gfu/gfu-sitepackage": "self.version"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "gfu_sitepackage"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+page = PAGE
+page {
+    typeNum = 0
+    meta {
+        # This meta viewport setting tells the browser to match the page width to the device screen, set the initial zoom to 1, allow users to zoom, and disable automatic content shrinking.
+        viewport = width=device-width, initial-scale=1, user-scalable=yes, shrink-to-fit=no
+
+    }
+
+    includeCSS {
+        10_bootstrap5 = https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css
+        10_bootstrap5.external = 1
+        20_mainstylesheet = EXT:gfu_sitepackage/Resources/Public/Css/main.css
+    }
+
+    includeJS {
+        # include javascript resources into <head>
+    }
+
+    includeJSFooterlibs {
+        # include javascript resources into <body> before closing tag
+        bootstrap5 = https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js
+        bootstrap5.external = 1
+
+    }
+
+    includeJSFooter {
+        # include javascripts depending on inclusions from includeJSFooterlibs
+        scripts = EXT:gfu_sitepackage/Resources/Public/Js/scripts.js
+    }
+}
+
+page.10 = FLUIDTEMPLATE
+page.10 {
+    # Look for Backend Layout
+    templateName = TEXT
+    templateName {
+        cObject = TEXT
+        cObject {
+            data = pagelayout
+            required = 1
+            case = uppercamelcase
+            split {
+                token = pagets__
+                cObjNum = 1
+                1.current = 1
+            }
+        }
+        # Fallback if nothing was found
+        ifEmpty = Default
+    }
+
+    settings {
+        startPagePid = {$plugin.tx_gfusitepackage.settings.startPagePid}
+        siteLogo = {$plugin.tx_gfusitepackage.settings.siteLogo}
+        footerNavigationPid = {$plugin.tx_gfusitepackage.settings.footerNavigationPid}
+    }
+
+    partialRootPaths.10 = {$plugin.tx_gfusitepackage.view.partialRootPath}
+    layoutRootPaths.10 = {$plugin.tx_gfusitepackage.view.layoutRootPath}
+    templateRootPaths.10 = {$plugin.tx_gfusitepackage.view.templateRootPath}
+
+    variables {
+        myTemplateVar = COA
+        myTemplateVar {
+            10 = TEXT
+            10.value = simple COA template var
+            20 = TEXT
+            20.value = annother simple template var
+        }
+        anyOtherTemplateVar = TEXT
+        anyOtherTemplateVar.value = anyValue
+    }
+}
+
+page.10 {
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        10 {
+            levels = 2
+            titleField = nav_title // title
+            expandAll = 1
+            as = mainNavigation
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10 {
+                    references.fieldName = media
+                    as = images
+                }
+            }
+        }
+
+        20 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        20 {
+            special = directory
+            special.value = {$plugin.tx_gfusitepackage.settings.metaNavigationPid}
+            as = metaNavigation
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10 {
+                    references.fieldName = media
+                }
+            }
+        }
+
+        30 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        30 {
+            special = directory
+            special.value = {$plugin.tx_gfusitepackage.settings.footerNavigationPid}
+            as = footerNavigation
+        }
+    }
+}
+
+

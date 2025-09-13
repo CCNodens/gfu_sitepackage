@@ -1,0 +1,40 @@
+/*
+Main TypoScript file for the extension gfu_sitepackage
+It includes all other TypoScript code from files troughout the system and cumulates their TypoScript code
+*/
+
+# Import a single file in a single directory
+@import 'EXT:gfu_sitepackage/Configuration/TypoScript/Configuration/Config.typoscript'
+@import 'EXT:gfu_sitepackage/Configuration/TypoScript/Configuration/Page/Page.typoscript'
+# import matching files from directory /Lib/
+@import 'EXT:gfu_sitepackage/Configuration/TypoScript/Configuration/Lib/*.typoscript'
+
+
+
+/*
+defines multiple root paths for **Templates**, **Partials**,
+and **Layouts** (with priorities based on the numbering).
+This way, TYPO3 can resolve the correct files when rendering content,
+while allowing default paths from the sitepackage to be used and overridden
+through constants (`{$...}`) or custom paths  if needed.
+*/
+plugin.tx_gfusitepackage {
+    view {
+        templateRootPaths {
+            0 = EXT:gfu_sitepackage/Resources/Private/Templates/
+            100 = {$plugin.tx_gfusitepackage.view.templateRootPath}
+            200 = EXT:gfu_sitepackage/Resources/Private/Templates/Content/
+        }
+
+        partialRootPaths {
+            0 = EXT:gfu_sitepackage/Resources/Private/Partials/
+            100 = {$plugin.tx_gfusitepackage.view.partialRootPath}
+            200 = EXT:gfu_sitepackage/Resources/Private/Partials/Content/
+        }
+
+        layoutRootPaths {
+            0 = EXT:gfu_sitepackage/Resources/Private/Layouts/
+            100 = {$plugin.tx_gfusitepackage.view.layoutRootPath}
+        }
+    }
+}

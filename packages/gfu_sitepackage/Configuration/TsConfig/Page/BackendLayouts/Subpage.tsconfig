@@ -1,0 +1,33 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      subpage {
+        title = LLL:EXT:gfu_sitepackage/Resources/Private/Language/locallang.xlf:subpage
+        config {
+          backend_layout {
+            colCount = 1
+            rowCount = 2
+            rows {
+              1 {
+                columns {
+                  1 {
+                    name = LLL:EXT:gfu_sitepackage/Resources/Private/Language/locallang.xlf:column_top
+                    colPos = 1
+                  }
+                }
+              }
+              2 {
+                columns {
+                  1 {
+                    name = LLL:EXT:gfu_sitepackage/Resources/Private/Language/locallang.xlf:column_main
+                    colPos = 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<html
+        xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+        data-namespace-typo3-fluid="true"
+>
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    Startpage Template
+    <f:debug>{_all}</f:debug>
+    <main class="">
+        <!--TYPO3SEARCH_begin-->
+        <div class="hero-wrap">
+            <f:cObject
+                    typoscriptObjectPath="lib.dynamicContent"
+                    data="{pageUid: '{data.uid}', colPos: '1'}"
+            />
+        </div>
+        <div class="content-wrap">
+            <f:cObject
+                    typoscriptObjectPath="lib.dynamicContent"
+                    data="{pageUid: '{data.uid}', colPos: '0'}"
+            />
+        </div>
+        <!--TYPO3SEARCH_end-->
+    </main>
+</f:section>
+</html>
