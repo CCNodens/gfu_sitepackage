@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+  Vancado\VncNews\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+  Vancado\VncNews\Command\ImportWpNewsCommand:
+    tags:
+      -
+        name: console.command
+        command: 'vnc-news:import-wp-news'
+        description: 'Imports WordPress WXR (XML)'
+        schedulable: true
