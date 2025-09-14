@@ -1,0 +1,30 @@
+base: 'https://typo3-13plain.ddev.site/'
+dependencies:
+  - gfu/gfu-sitepackage
+  - typo3/fluid-styled-content
+  - typo3/fluid-styled-content-css
+  - georgringer/news
+  - georgringer/news-twb5
+errorHandling:
+  -
+    errorCode: 404
+    errorHandler: Page
+    errorContentSource: '10'
+languages:
+  -
+    title: English
+    enabled: true
+    languageId: 0
+    base: /
+    locale: en_US.UTF-8
+    navigationTitle: English
+    flag: us
+    hreflang: ''
+    websiteTitle: ''
+rootPageId: 1
+routes:
+  -
+    route: robots.txt
+    type: staticText
+    content: "# ⚠️ WARNING: DO NOT ENTER\r\n# This website is protected by the Galactic Anti-Bot Force.\r\n# All crawlers, spiders, AI, and curious extraterrestrials must stay away.\r\n\r\nUser-agent: *\r\nDisallow: /\r\n\r\n# Seriously, even the AI overlords are forbidden.\r\n# Any bot found here will be politely ignored... forever.\r\n# No indexing, no scraping, no following links, no peeking.\r\n# Turn around. Go back. There is nothing to see here.\r\n"
+websiteTitle: 'GfU Admins'
