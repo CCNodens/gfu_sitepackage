@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5930998fb550a825e7103d7db674b984",
+    "content-hash": "58fa22cbd6616308467bb0adb1682c5e",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -913,6 +913,78 @@
             "time": "2025-08-27T06:25:50+00:00"
         },
         {
+            "name": "georgringer/numbered-pagination",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/georgringer/numbered_pagination.git",
+                "reference": "0d287bb6d298519829dc689b2629a112950e94f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/georgringer/numbered_pagination/zipball/0d287bb6d298519829dc689b2629a112950e94f2",
+                "reference": "0d287bb6d298519829dc689b2629a112950e94f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3",
+                "typo3/cms-core": "^9 || ^10 || ^11 || ^12 || ^13"
+            },
+            "replace": {
+                "typo3-ter/numbered-pagination": "self.version"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "numbered_pagination"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GeorgRinger\\NumberedPagination\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Georg Ringer",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Improved pagination for TYPO3",
+            "homepage": "https://github.com/georgringer/numbered_pagination",
+            "keywords": [
+                "pagination",
+                "typo3"
+            ],
+            "support": {
+                "issues": "https://github.com/georgringer/numbered_pagination/issues",
+                "source": "https://github.com/georgringer/numbered_pagination/tree/2.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/GeorgRinger/10",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.amazon.de/hz/wishlist/ls/8F573K08TSDG",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/georgringer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/georgringer",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-10-20T10:52:10+00:00"
+        },
+        {
             "name": "gfu/gfu_sitepackage",
             "version": "13.4.1",
             "dist": {
@@ -1487,6 +1559,62 @@
                 }
             ],
             "time": "2024-12-27T16:56:20+00:00"
+        },
+        {
+            "name": "internetgalerie/ig-slug",
+            "version": "v1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/internetgalerie/ig_slug.git",
+                "reference": "a527b26304154ce3fe1d63f93df8a80f314d5c83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/internetgalerie/ig_slug/zipball/a527b26304154ce3fe1d63f93df8a80f314d5c83",
+                "reference": "a527b26304154ce3fe1d63f93df8a80f314d5c83",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "^12 || ^13"
+            },
+            "replace": {
+                "typo3-ter/ig-slug": "self.version"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "ig_slug"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ig\\IgSlug\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Abplanalp",
+                    "homepage": "https://www.internetgalerie.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Rebuild URL slugs",
+            "homepage": "https://www.internetgalerie.ch",
+            "keywords": [
+                "extension",
+                "slug",
+                "typo3",
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/internetgalerie/ig_slug/issues",
+                "source": "https://github.com/internetgalerie/ig_slug/tree/v1.1.7"
+            },
+            "time": "2025-06-13T15:26:04+00:00"
         },
         {
             "name": "lolli42/finediff",
@@ -7296,6 +7424,42 @@
             "time": "2025-08-28T12:02:19+00:00"
         },
         {
+            "name": "vancado/vnc-news",
+            "version": "13.4.2",
+            "dist": {
+                "type": "path",
+                "url": "./packages/vnc_news",
+                "reference": "bb3d60957764f129306f8936abef2ee681c4b956"
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-simplexml": "*",
+                "georgringer/news": "^12.3",
+                "georgringer/numbered-pagination": "^2.1",
+                "internetgalerie/ig-slug": "^1.1",
+                "php": ">=8.2",
+                "typo3/cms-core": "^13.4"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "vnc_news"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vancado\\VncNews\\": "Classes/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Ajax based list view with endless scroll and masonry for TYPO3 News ext",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "webmozart/assert",
             "version": "1.11.0",
             "source": {
@@ -7354,7 +7518,69 @@
             "time": "2022-06-03T18:03:27+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "b13/make",
+            "version": "0.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/b13/make.git",
+                "reference": "d7f302a0211aeab90ac15825bf49fdf914d79ed9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/b13/make/zipball/d7f302a0211aeab90ac15825bf49fdf914d79ed9",
+                "reference": "d7f302a0211aeab90ac15825bf49fdf914d79ed9",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "^10.0 || ^11.0 || ^12.0 || ^13.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.4",
+                "typo3/cms-core": "^11.5",
+                "typo3/coding-standards": "^0.5",
+                "typo3/tailor": "^1.4",
+                "typo3/testing-framework": "^7.0"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "web-dir": ".Build/Web",
+                    "extension-key": "make",
+                    "cms-package-dir": "{$vendor-dir}/typo3/cms"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "B13\\Make\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Bartsch",
+                    "email": "oliver.bartsch@b13.com"
+                }
+            ],
+            "description": "Kickstarter CLI tool for various TYPO3 functionalities",
+            "homepage": "https://b13.com",
+            "keywords": [
+                "cli",
+                "extensions",
+                "kickstarter",
+                "typo3"
+            ],
+            "support": {
+                "issues": "https://github.com/b13/make/issues",
+                "source": "https://github.com/b13/make/tree/0.1.8"
+            },
+            "time": "2024-08-05T08:25:45+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
