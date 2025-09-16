@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58fa22cbd6616308467bb0adb1682c5e",
+    "content-hash": "ef6af0123dbf7f02174c3326bbac94a0",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6777,6 +6777,64 @@
             "time": "2025-09-09T08:43:17+00:00"
         },
         {
+            "name": "typo3/cms-lowlevel",
+            "version": "v13.4.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TYPO3-CMS/lowlevel.git",
+                "reference": "d3b24f99b3b7927a5a6916c9adaef8652fd76594"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TYPO3-CMS/lowlevel/zipball/d3b24f99b3b7927a5a6916c9adaef8652fd76594",
+                "reference": "d3b24f99b3b7927a5a6916c9adaef8652fd76594",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "13.4.18"
+            },
+            "conflict": {
+                "typo3/cms": "*"
+            },
+            "type": "typo3-cms-framework",
+            "extra": {
+                "typo3/cms": {
+                    "Package": {
+                        "partOfFactoryDefault": true
+                    },
+                    "extension-key": "lowlevel"
+                },
+                "branch-alias": {
+                    "dev-main": "13.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TYPO3\\CMS\\Lowlevel\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TYPO3 Core Team",
+                    "email": "typo3cms@typo3.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TYPO3 CMS Lowlevel - Technical analysis of the system. This includes raw database search, checking relations, counting pages and records etc.",
+            "homepage": "https://typo3.org",
+            "support": {
+                "chat": "https://typo3.org/help",
+                "docs": "https://docs.typo3.org",
+                "issues": "https://forge.typo3.org",
+                "source": "https://github.com/typo3/typo3"
+            },
+            "time": "2025-09-09T08:43:17+00:00"
+        },
+        {
             "name": "typo3/cms-reactions",
             "version": "v13.4.18",
             "source": {
@@ -6896,6 +6954,67 @@
             "time": "2025-09-09T08:43:17+00:00"
         },
         {
+            "name": "typo3/cms-reports",
+            "version": "v13.4.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TYPO3-CMS/reports.git",
+                "reference": "370881604a67fafc0769d9276b95bcc3915cb4ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TYPO3-CMS/reports/zipball/370881604a67fafc0769d9276b95bcc3915cb4ed",
+                "reference": "370881604a67fafc0769d9276b95bcc3915cb4ed",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "13.4.18"
+            },
+            "conflict": {
+                "typo3/cms": "*"
+            },
+            "suggest": {
+                "typo3/cms-scheduler": "Determine system's status and send it via email"
+            },
+            "type": "typo3-cms-framework",
+            "extra": {
+                "typo3/cms": {
+                    "Package": {
+                        "partOfFactoryDefault": true
+                    },
+                    "extension-key": "reports"
+                },
+                "branch-alias": {
+                    "dev-main": "13.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TYPO3\\CMS\\Reports\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TYPO3 Core Team",
+                    "email": "typo3cms@typo3.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TYPO3 CMS Reports - Show status reports and installed services in the (System>Reports) backend module.",
+            "homepage": "https://typo3.org",
+            "support": {
+                "chat": "https://typo3.org/help",
+                "docs": "https://docs.typo3.org",
+                "issues": "https://forge.typo3.org",
+                "source": "https://github.com/typo3/typo3"
+            },
+            "time": "2025-09-09T08:43:17+00:00"
+        },
+        {
             "name": "typo3/cms-rte-ckeditor",
             "version": "v13.4.18",
             "source": {
@@ -6951,6 +7070,61 @@
             "support": {
                 "chat": "https://typo3.org/help",
                 "docs": "https://docs.typo3.org/c/typo3/cms-rte-ckeditor/main/en-us",
+                "issues": "https://forge.typo3.org",
+                "source": "https://github.com/typo3/typo3"
+            },
+            "time": "2025-09-09T08:43:17+00:00"
+        },
+        {
+            "name": "typo3/cms-scheduler",
+            "version": "v13.4.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TYPO3-CMS/scheduler.git",
+                "reference": "e2268cd4396e9f4f25d9429fab7da7c1bcc8b98d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TYPO3-CMS/scheduler/zipball/e2268cd4396e9f4f25d9429fab7da7c1bcc8b98d",
+                "reference": "e2268cd4396e9f4f25d9429fab7da7c1bcc8b98d",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "13.4.18"
+            },
+            "conflict": {
+                "typo3/cms": "*"
+            },
+            "type": "typo3-cms-framework",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "scheduler"
+                },
+                "branch-alias": {
+                    "dev-main": "13.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TYPO3\\CMS\\Scheduler\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TYPO3 Core Team",
+                    "email": "typo3cms@typo3.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TYPO3 CMS Scheduler - Schedule tasks to run once or periodically at a specific time.",
+            "homepage": "https://typo3.org",
+            "support": {
+                "chat": "https://typo3.org/help",
+                "docs": "https://docs.typo3.org/c/typo3/cms-scheduler/main/en-us",
                 "issues": "https://forge.typo3.org",
                 "source": "https://github.com/typo3/typo3"
             },
@@ -7429,7 +7603,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/vnc_news",
-                "reference": "bb3d60957764f129306f8936abef2ee681c4b956"
+                "reference": "dd3c00397fa2f3c4d0664699c20279395c7e2d4b"
             },
             "require": {
                 "ext-dom": "*",
@@ -7454,7 +7628,7 @@
             "license": [
                 "GPL-2.0-or-later"
             ],
-            "description": "Ajax based list view with endless scroll and masonry for TYPO3 News ext",
+            "description": "Import posts from WP to news records. Support img tags in RTE. Additional ajax list view for TYPO3 News",
             "transport-options": {
                 "relative": true
             }
