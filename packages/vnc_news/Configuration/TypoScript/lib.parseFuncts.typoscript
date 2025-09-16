@@ -1,0 +1,40 @@
+# adds img tag to list of tags and configure FE rendering to support file:123 in RTE
+
+lib.parseFunc_RTE {
+    tags {
+        a = TEXT
+        a {
+            current = 1
+            typolink {
+                parameter.data = parameters:href
+                title.data = parameters:title
+                target.data = parameters:target
+                ATagParams.data = parameters:allParams
+            }
+        }
+        img = TEXT
+        img {
+            current = 1
+            stdWrap3.noTrimWrap =|<img src="|" />|
+            typolink {
+                parameter.data = parameters:src
+                stdWrap.replacement {
+                    10 {
+                        search = t3://file?uid=
+                        replace =
+                        useRegExp = 0
+                    }
+                }
+                returnLast = url
+            }
+        wrap = <img src="|" alt="" class="inline-image wp-inline-image" loading="lazy" />
+        }
+    }
+    nonTypoTagStdWrap {
+        HTMLparser = 1
+        HTMLparser {
+            keepNonMatchedTags = 1
+            htmlSpecialChars = 2
+        }
+    }
+}

@@ -1,6 +1,6 @@
 {
   "name": "vancado/vnc-news",
-  "description": "Ajax based list view with endless scroll and masonry for TYPO3 News ext",
+  "description": "Import posts from WP to news records. Support img tags in RTE. Additional ajax list view for TYPO3 News",
   "type": "typo3-cms-extension",
   "version": "13.4.2",
   "license": [

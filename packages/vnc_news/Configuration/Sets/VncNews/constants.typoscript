@@ -1,0 +1,14 @@
+# Configure own template path
+plugin.tx_vncnews {
+    view {
+        # cat=plugin.tx_vncnews/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:vnc_news/Resources/Private/Templates/
+        # cat=plugin.tx_vncnews/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:vnc_news/Resources/Private/Partials/
+        # cat=plugin.tx_vncnews/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:vnc_news/Resources/Private/Layouts/
+    }
+    settings {
+        vnc_news-teaser--wrapper = card
+    }
+}

@@ -1,0 +1,76 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<div class="col-12 col-md-6 col-lg-3" data-ajax-body="">
+<f:comment>
+    <f:variable name="icon">archive</f:variable>
+    <f:variable name="color">white</f:variable>
+    <f:variable name="recordDataIcon"></f:variable>
+    <f:variable name="recordDataTitle">Newsarchiv</f:variable>
+    <f:variable name="recordDataBodytext">Hier finden Sie alle Neuigkeiten und Pressemeldungen der Hertener Stadtwerke der letzten Jahre.</f:variable>
+    <f:variable name="recordDataLinktext">Zum Archiv</f:variable>
+    <f:variable name="recordDataLink">t3://page?uid={settings.newsArchivPid}</f:variable>
+
+</f:comment>
+
+
+    <div class="teaser--archive gradient-blue-reverse text-white d-flex flex-column gap-3 justify-content-between p-5">
+        <f:if condition="{icon}">
+            <div class="icon-f -color-{color}">
+                <f:if condition="{recordDataIcon}">
+                    <f:then>
+                        <i class="{recordDataIcon}"></i>
+                    </f:then>
+                    <f:else>
+                        <i class="svg-icon svg-icon--s justify-content-start">
+                            <svg
+                                class="icon -{color}"
+                                preserveAspectRatio="xMaxYMin"
+                            >
+                                <use
+                                    xlink:href="{f:uri.resource(path:'{settings.svgSpriteFile}', extensionName: 'vnc_sitepackage')}#icon-{icon}"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0"
+                                    y="0"
+                                ></use>
+                            </svg>
+                        </i>
+                    </f:else>
+                </f:if>
+            </div>
+        </f:if>
+<f:comment>
+        <p class="headline h5 text-white">{recordDataTitle -> f:format.raw()}</p>
+
+        <div class="bodytext--s">{recordDataBodytext -> f:format.html()}</div>
+        <f:if condition="{recordDataLink}">
+        <f:then>
+            <f:if condition="{recordDataLinktext}">
+                <f:link.typolink
+                    class="link link--archive link--icon -theme-{color}"
+                    parameter="{recordDataLink}"
+                >
+                    {recordDataLinktext -> f:format.raw()}
+                    <i class="svg-icon">
+                        <svg class="icon" preserveAspectRatio="xMaxYMin">
+                            <use
+                                xlink:href="{f:uri.resource(path:'{settings.svgSpriteFile}', extensionName: 'vnc_sitepackage')}#icon-arrow-right"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                x="0"
+                                y="0"
+                            ></use>
+                        </svg>
+                    </i>
+                </f:link.typolink>
+            </f:if>
+        </f:then>
+        <f:else>
+            <div></div>
+        </f:else>
+    </f:if>
+</f:comment>
+    </div>
+
+</div>
+</html>

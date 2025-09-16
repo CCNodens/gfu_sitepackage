@@ -1,0 +1,121 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper"
+    data-namespace-typo3-fluid="true"
+>
+    <f:layout name="Detail" />
+
+    <f:section name="header">
+
+    </f:section>
+
+    <f:section name="content">
+        <article class="article article--news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-5">
+                      <f:if condition="{newsItem.mediaPreviews}">
+                        <f:then>
+                            <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                                <f:if
+                                    condition="{mediaElement.originalResource.type} == 2"
+                                >
+                                    <f:image
+                                        image="{mediaElement}"
+                                        class="img-fluid"
+                                        title="{mediaElement.originalResource.title}"
+                                        alt="{mediaElement.originalResource.alternative}"
+                                        loading="{settings.list.media.image.lazyLoading}"
+                                        maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                        maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
+                                    />
+                                </f:if>
+                                <f:if
+                                    condition="{mediaElement.originalResource.type} == 4"
+                                >
+                                    <f:render
+                                        partial="Detail/MediaVideo"
+                                        arguments="{mediaElement: mediaElement}"
+                                    />
+                                </f:if>
+                                <f:if
+                                    condition="{mediaElement.originalResource.type} == 5"
+                                >
+                                    <f:image
+                                        image="{mediaElement}"
+                                        class="img-fluid"
+                                        title="{mediaElement.originalResource.title}"
+                                        alt="{mediaElement.originalResource.alternative}"
+                                        loading="{settings.list.media.image.lazyLoading}"
+                                        maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                        maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
+                                    />
+                                </f:if>
+                            </f:alias>
+                        </f:then>
+                        <f:else>
+                            <f:if condition="{settings.displayDummyIfNoMedia}">
+                                <f:image
+                                    class="img-fluid"
+                                    src="{settings.list.media.dummyImage}"
+                                    title=""
+                                    alt=""
+                                    loading="{settings.list.media.image.lazyLoading}"
+                                    maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+                                    maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
+                                />
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <f:comment>
+                        <f:if condition="{newsItem.datetime}">
+                            <div class="bodytext--xs">
+                                <time
+                                    pubdate=""
+                                    datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}"
+                                    title="{f:format.date(date:newsItem.datetime, format:'%e. %B %G')}"
+                                >
+                                    <f:format.date format="d.m.Y"
+                                        >{newsItem.datetime}</f:format.date
+                                    >
+                                </time>
+                            </div>
+                        </f:if>
+                        </f:comment>
+                        <h1 class="headline h4 my-4">{newsItem.title}</h1>
+                        <f:if condition="{newsItem.teaser}">
+                            <div class="bodytext--s fw-bold">
+                                <f:format.html>{newsItem.teaser}</f:format.html>
+                            </div>
+                        </f:if>
+                        <div class="bodytext--s">
+                            <f:if condition="{newsItem.bodytext}">
+                                <f:format.html>{newsItem.bodytext}</f:format.html>
+                            </f:if>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center my-5">
+                        <f:if condition="{settings.backPid}">
+                            <f:link.page
+                                class="button button--primary mb-5"
+                                additionalAttributes="{role: 'button'}"
+                                pageUid="{settings.backPid}"
+                            >
+                                <span class="caption"
+                                    ><f:translate key="back-link"
+                                /></span>
+                            </f:link.page>
+                        </f:if>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </f:section>
+
+    <f:section name="relatedNews"> </f:section>
+</html>

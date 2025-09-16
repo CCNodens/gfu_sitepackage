@@ -9,6 +9,7 @@ It includes all other TypoScript code from files troughout the system and cumula
 # import matching files from directory /Lib/
 @import 'EXT:gfu_sitepackage/Configuration/TypoScript/Configuration/Lib/*.typoscript'
 
+# HINT: call 'typo3 cache:flush' via console after adding new inclusions
 
 
 /*

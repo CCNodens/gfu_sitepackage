@@ -1,6 +1,8 @@
 page = PAGE
 page {
     typeNum = 0
+    # <body> tag is ppart ot the PAGE object and nor reachable in fluid
+    bodyTagAdd = class="d-flex flex-column h-100"
     meta {
         # This meta viewport setting tells the browser to match the page width to the device screen, set the initial zoom to 1, allow users to zoom, and disable automatic content shrinking.
         viewport = width=device-width, initial-scale=1, user-scalable=yes, shrink-to-fit=no

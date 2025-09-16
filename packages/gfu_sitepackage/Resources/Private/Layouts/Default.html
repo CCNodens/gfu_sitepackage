@@ -1,19 +1,23 @@
-<html
-        xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-        data-namespace-typo3-fluid="true"
->
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 
-  <f:layout name="Default" />
-
-  <f:spaceless>
-      <f:render partial="Page/Header" arguments="{_all}" />
-      <f:render section="Main" arguments="{_all}" />
-      <f:render partial="Page/Footer" arguments="{_all}" />
-  </f:spaceless>
+<f:layout name="Default"/>
 
 
 
-  <f:comment> Path settings from constants in plugin.tx_gfusitepackage.view... </f:comment>
+    <f:render partial="Page/Header" arguments="{_all}"/>
+    <main class="flex-shrink-0">
+        <f:render section="Main" arguments="{_all}"/>
+    </main>
+    <f:render partial="Page/Footer" arguments="{_all}"/>
+
+
+
+
+<f:comment>
+    Simple example for a fluid Layout template with minimal design based on bootstrap 5
+
+    Path settings from constants in plugin.tx_gfusitepackage.view {...}
+</f:comment>
 
 </html>

@@ -1,0 +1,12 @@
+TCEMAIN.linkHandler {
+    newsimage {
+        handler = Vancado\VncNews\LinkHandler\NewsImageLinkHandler
+        label = LLL:EXT:vnc_news/Resources/Private/Language/locallang.xlf:linkhandler.label
+        displayAfter = file
+        scanBefore = url
+        configuration {
+            project = TYPO3-Documentation/TYPO3CMS-Reference-CoreApi
+            action = image
+        }
+    }
+}

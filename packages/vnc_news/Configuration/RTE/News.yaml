@@ -1,0 +1,10 @@
+imports:
+  # Import default RTE config (for example)
+  - { resource: "EXT:rte_ckeditor/Configuration/RTE/Default.yaml" }
+
+allowedTypes: 'page,url,file,email,image'
+editor:
+  config:
+    htmlSupport:
+      allow:
+        - { name: 'img', attributes: true, classes: true, styles: true }

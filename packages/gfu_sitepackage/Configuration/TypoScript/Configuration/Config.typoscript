@@ -7,3 +7,6 @@ config {
     compressCss = 0
     minifyCSS = 0
 }
+
+# html tag is part of the CONFIG Tld Obj. ...
+config.htmlTag.attributes.class =  h-100

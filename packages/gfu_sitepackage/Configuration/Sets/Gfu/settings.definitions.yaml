@@ -1,0 +1,11 @@
+categories:
+  gfu: ~
+  gfu.settings:
+    parent: gfu
+
+
+settings:
+  siteTitle:
+    default: GfU Admin
+    type: string
+    category: gfu.settings

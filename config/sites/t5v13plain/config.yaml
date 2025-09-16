@@ -5,6 +5,7 @@ dependencies:
   - typo3/fluid-styled-content-css
   - georgringer/news
   - georgringer/news-twb5
+  - vancado/vnc-news
 errorHandling:
   -
     errorCode: 404

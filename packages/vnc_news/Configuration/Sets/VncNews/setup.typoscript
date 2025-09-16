@@ -1,0 +1,23 @@
+@import 'EXT:vnc_news/Configuration/TypoScript/lib.parseFuncts.typoscript'
+
+# Set high priority for ext templates
+plugin.tx_news {
+    view {
+        templateRootPaths {
+            100 = {$plugin.tx_vncnews.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            100 = {$plugin.tx_vncnews.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            100 = {$plugin.tx_vncnews.view.layoutRootPath}
+        }
+    }
+    settings {
+        classNames {
+            teaserWrapper =  {$plugin.tx_vncnews.settings.teaserWrapper}
+        }
+    }
+}

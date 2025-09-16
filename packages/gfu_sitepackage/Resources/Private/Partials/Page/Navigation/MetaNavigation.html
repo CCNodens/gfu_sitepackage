@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+        <f:if condition="{metaNavigation}">
+            <ul class="nav">
+                <f:for each="{metaNavigation}" as="item" iteration="i">
+                    <li class="nav-item">
+                        <f:link.typolink parameter="{item.link}" target="{item.target}" class="nav-link">
+                            {item.title}
+                        </f:link.typolink>
+                    </li>
+                </f:for>
+            </ul>
+        </f:if>
+
+</html>
