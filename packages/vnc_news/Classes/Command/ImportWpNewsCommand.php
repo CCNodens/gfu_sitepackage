@@ -465,7 +465,7 @@ final class ImportWpNewsCommand extends Command
         return $bodytext;
     }
 
-    /** Schreibt MM-Beziehungen sys_category_record_mm (uid_local=cat.uid, uid_foreign=news.uid) */
+    /** Schreibt MM-Beziehungen sys_category_record_mm (uid_local=cat.uid, uid_foreign=news.uid) r */
     private function insertCategoryMMLinks(Connection $mmConn, array $catUids, int $newsUid): void
     {
         $sorting = 1;
