@@ -21,17 +21,21 @@ import LinkBrowser
 
 class NewsImageLinkHandler {
     constructor() {
-        var form_el = document.getElementById("lgithubform");
-        form_el.addEventListener("submit", function(event) {
+        const form = document.getElementById('limageform');
+        alert('huhu');
+        if (!form) return;
+        form.addEventListener('submit', function (event) {
             event.preventDefault();
-            var value = document.getElementById('lgithub').value;
-            if (value === 't3://github?issue=') {
+            const uidEl = document.getElementById('limage-uid');
+            const uid = uidEl ? uidEl.value.trim() : '';
+            if (!uid || Number(uid) <= 0) {
+                // optionally show an inline error
                 return;
             }
-            if (value.indexOf('t3://file=') === 0) {
-                value = value.substring(18);
-            }
-            LinkBrowser.finalizeFunction('t3:file=' + value);
+            // Here we hand over raw HTML — LinkBrowser will insert this string into the editor.
+            // NOTE: RTE/CKEditor sanitize rules must allow <img> tags.
+            const html = '<img src="t3://file?uid=' + uid + '" />';
+            LinkBrowser.finalizeFunction(html);
         });
     }
 }

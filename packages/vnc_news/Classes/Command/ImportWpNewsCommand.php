@@ -15,9 +15,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Core\Site\SiteFinder;
 
 #[AsCommand(
     name: 'vnc:import-wp-news',
@@ -40,6 +42,8 @@ final class ImportWpNewsCommand extends Command
         'typo3-dir' => 'vnc_news'
     ];
 
+    private SiteFinder $site;
+
     private ConnectionPool $connectionPool;
     private ResourceFactory $resourceFactory;
 
@@ -53,12 +57,14 @@ final class ImportWpNewsCommand extends Command
         $this->connectionPool = $connectionPool;
         // Fallback, falls DI für ResourceFactory nicht greift
         $this->resourceFactory = $resourceFactory ?? GeneralUtility::makeInstance(ResourceFactory::class);
+        $this->site = $site ?? GeneralUtility::makeInstance(SiteFinder::class);
     }
 
     protected function configure(): void
     {
         $this
             ->addOption('file', null, InputOption::VALUE_REQUIRED, 'Absolute path to the WordPress XML (WXR) export file')
+            ->addOption('wpdomain', null, InputOption::VALUE_REQUIRED, 'Domain name to substitute with current domain. eg my-blog.de')
             ->addOption('pid', null, InputOption::VALUE_OPTIONAL, 'Target storage PID for imported news (defaults to 0)', 0);
     }
 
@@ -66,12 +72,22 @@ final class ImportWpNewsCommand extends Command
     {
         $file = (string)($input->getOption('file') ?? '');
         $pid = (int)($input->getOption('pid') ?? 0);
+        $oldHost = (string)($input->getOption('wpdomain') ?? '');
+
+        try {
+            $currentHost = $this->site->getSiteByPageId($pid)->getBase()->getHost();
+        }
+        catch (SiteNotFoundException $e) {
+        }
+
+        #var_dump($this->site->getSiteByPageId($pid)->getBase()->getHost());
+       # die();
 
         if ($file === '' || !is_file($file) || !is_readable($file)) {
             $output->writeln('<error>ERROR: Please pass a readable file via --file="/absolute/path/to/export.xml"</error>');
             $output->writeln('');
             $output->writeln('<info>Usage:</info>');
-            $output->writeln('  typo3 vnc:import-wp-news --file="var/import/export.xml" [--pid=123]');
+            $output->writeln('  typo3 vnc:import-wp-news --file="var/import/export.xml" [--pid=123] [--wp-domain=my-blog.com]');
             return Command::FAILURE;
         }
         if ($pid < 0) {
@@ -196,7 +212,7 @@ final class ImportWpNewsCommand extends Command
                 'deleted' => 0,
                 'title' => $title,
                 'teaser' => $description,
-                'bodytext' => $bodytext,
+                'bodytext' => $this->substituteBodytextHostnames($bodytext, $oldHost, $currentHost),
                 'datetime' => $datetimeTs,
                 'type' => 0,
                 // 'externalurl' => $link,
@@ -314,8 +330,6 @@ final class ImportWpNewsCommand extends Command
         return Command::SUCCESS;
     }
 
-    // ---------- Helpers ----------
-
     /** XML robust laden (BOM/Steuerzeichen entfernen, SimpleXML, DOM-Fallback) */
     private function loadWxr(string $file, OutputInterface $output): ?SimpleXMLElement
     {
@@ -373,6 +387,8 @@ final class ImportWpNewsCommand extends Command
         return null;
     }
 
+    // ---------- Helpers ----------
+
     private function printXmlErrors(OutputInterface $output, array $errs, string $label): void
     {
         if (empty($errs)) {
@@ -406,20 +422,63 @@ final class ImportWpNewsCommand extends Command
         }
     }
 
-    /** WP-URL → FAL-Identifier unter fileadmin/dingers.de/99_blog/... */
-    private function mapWpUrlToFileadminIdentifier(string $url): ?string
+    /** Liest alle <category domain="category">Titel</category> und mappt via CATEGORY_MAP */
+    private function resolveCategoryUidsFromItem(SimpleXMLElement $item): array
     {
-        $path = parse_url($url, PHP_URL_PATH) ?? '';
-        if ($path === '') {
-            return null;
+        $uids = [];
+        $unknown = [];
+
+        if (isset($item->category)) {
+            foreach ($item->category as $catNode) {
+                $attrs = $catNode->attributes();
+                $domain = $attrs['domain'] ?? null;
+                if ((string)$domain !== 'category') {
+                    continue;
+                }
+                $title = trim((string)$catNode); // Inhalt aus <![CDATA[...]]>
+                if ($title === '') {
+                    continue;
+                }
+                if (array_key_exists($title, self::CATEGORY_MAP)) {
+                    $uids[] = (int)self::CATEGORY_MAP[$title];
+                } else {
+                    $unknown[] = $title;
+                }
+            }
         }
-        $pos = strpos($path, self::DESTINATION_MAP['wp-dir']);
-        if ($pos === false) {
-            $basename = basename($path);
-            return $basename !== '' ? '/' . self::DESTINATION_MAP['typo3-dir'] . '/' . $basename : null;
+
+        // de-dupe & normalize
+        $uids = array_values(array_unique(array_filter($uids, static fn($v) => $v > 0)));
+        $unknown = array_values(array_unique(array_filter($unknown)));
+
+        return [$uids, $unknown];
+    }
+
+    private function substituteBodytextHostnames(string $bodytext, string $oldHost = '', string $newHost = ''): string
+    {
+        $newHost = trim($newHost);
+        $oldHost = trim($oldHost);
+        $_storage = '/fileadmin/'; //@ToDo: get storage from api
+        if($newHost !=='' || $oldHost !=='') {
+           $bodytext = str_replace($oldHost.self::DESTINATION_MAP['wp-dir'], $newHost.$_storage.self::DESTINATION_MAP['typo3-dir'].'/', $bodytext);
         }
-        $suffix = ltrim(substr($path, $pos + strlen(self::DESTINATION_MAP['wp-dir'])), '/');
-        return '/' . self::DESTINATION_MAP['typo3-dir'] . '/' . $suffix;
+        return $bodytext;
+    }
+
+    /** Schreibt MM-Beziehungen sys_category_record_mm (uid_local=cat.uid, uid_foreign=news.uid) */
+    private function insertCategoryMMLinks(Connection $mmConn, array $catUids, int $newsUid): void
+    {
+        $sorting = 1;
+        foreach ($catUids as $catUid) {
+            $mmConn->insert('sys_category_record_mm', [
+                'uid_local' => $catUid,
+                'uid_foreign' => $newsUid,
+                'tablenames' => 'tx_news_domain_model_news',
+                'fieldname' => 'categories',
+                'sorting' => $sorting++,
+                'sorting_foreign' => 0,
+            ]);
+        }
     }
 
     /** Datei-URL an News hängen (fal_media), inkl. Dedupe & Sorting. */
@@ -477,6 +536,22 @@ final class ImportWpNewsCommand extends Command
         }
     }
 
+    /** WP-URL → FAL-Identifier unter fileadmin/dingers.de/99_blog/... */
+    private function mapWpUrlToFileadminIdentifier(string $url): ?string
+    {
+        $path = parse_url($url, PHP_URL_PATH) ?? '';
+        if ($path === '') {
+            return null;
+        }
+        $pos = strpos($path, self::DESTINATION_MAP['wp-dir']);
+        if ($pos === false) {
+            $basename = basename($path);
+            return $basename !== '' ? '/' . self::DESTINATION_MAP['typo3-dir'] . '/' . $basename : null;
+        }
+        $suffix = ltrim(substr($path, $pos + strlen(self::DESTINATION_MAP['wp-dir'])), '/');
+        return '/' . self::DESTINATION_MAP['typo3-dir'] . '/' . $suffix;
+    }
+
     /** sys_file.uid für Identifier im DEFAULT Storage ermitteln */
     private function resolveFileUidViaDefaultStorage(ResourceStorage $storage, string $identifier): ?int
     {
@@ -501,53 +576,5 @@ final class ImportWpNewsCommand extends Command
         }
 
         return null;
-    }
-
-    /** Liest alle <category domain="category">Titel</category> und mappt via CATEGORY_MAP */
-    private function resolveCategoryUidsFromItem(SimpleXMLElement $item): array
-    {
-        $uids = [];
-        $unknown = [];
-
-        if (isset($item->category)) {
-            foreach ($item->category as $catNode) {
-                $attrs = $catNode->attributes();
-                $domain = $attrs['domain'] ?? null;
-                if ((string)$domain !== 'category') {
-                    continue;
-                }
-                $title = trim((string)$catNode); // Inhalt aus <![CDATA[...]]>
-                if ($title === '') {
-                    continue;
-                }
-                if (array_key_exists($title, self::CATEGORY_MAP)) {
-                    $uids[] = (int)self::CATEGORY_MAP[$title];
-                } else {
-                    $unknown[] = $title;
-                }
-            }
-        }
-
-        // de-dupe & normalize
-        $uids = array_values(array_unique(array_filter($uids, static fn($v) => $v > 0)));
-        $unknown = array_values(array_unique(array_filter($unknown)));
-
-        return [$uids, $unknown];
-    }
-
-    /** Schreibt MM-Beziehungen sys_category_record_mm (uid_local=cat.uid, uid_foreign=news.uid) */
-    private function insertCategoryMMLinks(Connection $mmConn, array $catUids, int $newsUid): void
-    {
-        $sorting = 1;
-        foreach ($catUids as $catUid) {
-            $mmConn->insert('sys_category_record_mm', [
-                'uid_local' => $catUid,
-                'uid_foreign' => $newsUid,
-                'tablenames' => 'tx_news_domain_model_news',
-                'fieldname' => 'categories',
-                'sorting' => $sorting++,
-                'sorting_foreign' => 0,
-            ]);
-        }
     }
 }

@@ -1,17 +1,55 @@
 <?php
+declare(strict_types=1);
 
 namespace Vancado\VncNews\LinkHandler;
 
-use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Controller\AbstractLinkBrowserController;
+use TYPO3\CMS\Filelist\LinkHandler\FileLinkHandler;
+use TYPO3\CMS\Core\Resource\Folder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use Throwable;
 
-class NewsImageLinkHandler implements LinkHandlerInterface
+/**
+ * NewsImageLinkHandler
+ * erzeugt <img src="t3://file?uid=..."/> im RTE
+ */
+class NewsImageLinkHandler extends FileLinkHandler
 {
-    public function render(ServerRequestInterface $request): string
-    {
-        $this->pageRenderer->loadJavaScriptModule('@vnc_news/Resources/Public/Js/Backend/vnc-news-image-linkhandler.js');
-        $this->view->assign('image', $this->configuration['image']);
-        $this->view->assign('alt', $this->configuration['alt']);
+    protected string $startingFolder = 'fileadmin/news/';
 
-        return $this->view->render('LinkBrowser/GitHub');
+    public function initialize(
+        AbstractLinkBrowserController $linkBrowser,
+                                      $identifier,
+        array $configuration
+    ) {
+        $result = parent::initialize($linkBrowser, $identifier, $configuration);
+
+        // Startordner setzen
+        try {
+            if ($this->startingFolder !== '') {
+                $folder = $this->resourceFactory->retrieveFileOrFolderObject($this->startingFolder);
+                if ($folder instanceof Folder) {
+                    $this->selectedFolder = $folder;
+                    $this->expandFolder = $folder->getCombinedIdentifier();
+                }
+            }
+        } catch (Throwable $e) {
+            // ignore
+        }
+
+        return $result;
+    }
+
+    /**
+     * Überschreibt die URL-Ausgabe -> liefert <img> statt <a>
+     */
+    public function formatCurrentUrl(): string
+    {
+        if (!empty($this->linkParts['file'])) {
+            $uid = $this->linkParts['file']->getUid();
+            return '<img src="t3://file?uid=' . $uid . '" alt="" />';
+        }
+        return '';
     }
 }

@@ -2,7 +2,8 @@ imports:
   # Import default RTE config (for example)
   - { resource: "EXT:rte_ckeditor/Configuration/RTE/Default.yaml" }
 
-allowedTypes: 'page,url,file,email,image'
+#allowedTypes: 'page,url,file,email,vncnewsimage'
+
 editor:
   config:
     htmlSupport:
