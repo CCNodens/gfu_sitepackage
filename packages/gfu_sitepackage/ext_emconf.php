@@ -10,7 +10,7 @@ $EM_CONF['gfu_sitepackage'] = [
     'version' => '1.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '13.0.0-13.9.99'
+            'typo3' => '13.4.0-13.4.99'
         ],
     ],
 ];
