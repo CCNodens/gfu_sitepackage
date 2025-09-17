@@ -3,16 +3,17 @@
 
 <f:layout name="Default"/>
 
-
-
+<header class="container">
     <f:render partial="Page/Header" arguments="{_all}"/>
-    <main class="flex-shrink-0">
+</header>
+<main class="flex-shrink-0">
+    <div class="container">
         <f:render section="Main" arguments="{_all}"/>
-    </main>
+    </div>
+</main>
+<footer class="footer mt-auto py-3 bg-light">
     <f:render partial="Page/Footer" arguments="{_all}"/>
-
-
-
+</footer>
 
 <f:comment>
     Simple example for a fluid Layout template with minimal design based on bootstrap 5

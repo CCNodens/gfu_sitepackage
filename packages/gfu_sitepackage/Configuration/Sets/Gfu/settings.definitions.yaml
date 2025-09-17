@@ -2,10 +2,48 @@ categories:
   gfu: ~
   gfu.settings:
     parent: gfu
-
+  gfu.templates:
+    parent: gfu
 
 settings:
   siteTitle:
-    default: GfU Admin
     type: string
-    category: gfu.settings
+    label: 'Site title from Sets'
+    category: 'gfu.settings'
+    default: 'GFU Beispielseite'
+  siteLogo:
+    type: string
+    label: 'Site logo from Sets'
+    category: 'gfu.settings'
+    default: 'EXT:packages/gfu_sitepackage/Resources/Public/Images/Logo/gfu-logo.svg'
+#  startPagePid:
+#    type: int
+#    label: 'Parent page pid for main navigation to start from'
+#    category: 'gfu.settings'
+#    default: 1
+#  metaNavigationPid:
+#    type: int
+#    label: 'Page pid for meta navigation pages'
+#    category: 'gfu.settings'
+#    default: 1
+#  footerNavigationPid:
+#    type: int
+#    label: 'Page uid with footer pages'
+#    category: 'gfu.settings'
+#    default: 1
+#  # View paths
+#  layoutRootPath:
+#    type: string
+#    label: 'Path to layouts root (FE)'
+#    category: 'gfu.templates'
+#    default: 'EXT:gfu_sitepackage/Resources/Private/Layouts/'
+#  templateRootPath:
+#    type: string
+#    label: 'Path to templates root (FE)'
+#    category: 'gfu.templates'
+#    default: 'EXT:gfu_sitepackage/Resources/Private/Templates/Page/'
+#  partialRootPath:
+#    type: string
+#    label: 'Path to partials root (FE)'
+#    category: 'gfu.templates'
+#    default: 'EXT:gfu_sitepackage/Resources/Private/Partials/'

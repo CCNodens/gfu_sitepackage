@@ -1,0 +1,14 @@
+#
+lib.logo = SVG
+lib.logo {
+    renderMode = inline
+    width = 227
+    height = 68
+    src = EXT:gfu_sitepackage/Resources/Public/Images/Logo/gfu-logo.svg
+    stdWrap.wrap = <div class="gfu-logo ms-2">|</div>
+    stdWrap.typolink {
+        parameter = {$plugin.tx_gfusitepackage.settings.startPagePid}
+        ATagParams = class="navbar-brand me-0 me-lg-2"
+    }
+
+}

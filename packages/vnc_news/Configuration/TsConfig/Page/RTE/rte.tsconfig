@@ -1,0 +1,7 @@
+// if page properties tab "behavior -> contains plugin" is set to news
+// records inside will use RTE preset
+[traverse(page, "module") == "news"]
+    RTE.default.preset = vncnews
+[END]
+
+

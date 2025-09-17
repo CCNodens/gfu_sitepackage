@@ -39,3 +39,6 @@ plugin.tx_gfusitepackage {
         }
     }
 }
+
+page.includeJSFooter.vncnews = EXT:vnc_news/Resources/Public/Js/Frontend/news-ajax.js
+page.includeJSFooter.vncnews.excludeFromConcatenation = 1

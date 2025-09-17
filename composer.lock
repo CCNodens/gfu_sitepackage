@@ -990,9 +990,10 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/gfu_sitepackage",
-                "reference": "29fe7ba39294bef4c9939bd645a58d7ac620544c"
+                "reference": "162a07f5c01116eda8b36140fe7c7851f08853cf"
             },
             "require": {
+                "helhum/typo3-console": "^8.2",
                 "typo3/cms-core": "^13"
             },
             "replace": {

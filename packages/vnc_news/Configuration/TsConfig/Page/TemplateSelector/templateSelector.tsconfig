@@ -1,0 +1,4 @@
+tx_news.templateLayouts {
+
+    10 = List Masonry
+}

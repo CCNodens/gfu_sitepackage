@@ -1,19 +1,14 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<header>
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Fixed navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <f:cObject typoscriptObjectPath="lib.logo" />
             <div class="container d-flex flex-wrap">
                 <f:render partial="Page/Navigation/MainNavigation" arguments="{_all}"/>
                 <f:render partial="Page/Navigation/MetaNavigation" arguments="{_all}"/>
             </div>
         </nav>
-    </div>
-</header>
+
 <f:comment>
 
     Simple example for a fluid partial template with minimal design based on bootstrap 5

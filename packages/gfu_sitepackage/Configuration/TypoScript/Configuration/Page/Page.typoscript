@@ -1,6 +1,7 @@
 page = PAGE
 page {
     typeNum = 0
+    shortcutIcon = {$plugin.tx_gfusitepackage.settings.siteFavicon}
     # <body> tag is ppart ot the PAGE object and nor reachable in fluid
     bodyTagAdd = class="d-flex flex-column h-100"
     meta {
@@ -54,8 +55,11 @@ page.10 {
 
     settings {
         startPagePid = {$plugin.tx_gfusitepackage.settings.startPagePid}
+        test = hello
         siteLogo = {$plugin.tx_gfusitepackage.settings.siteLogo}
         footerNavigationPid = {$plugin.tx_gfusitepackage.settings.footerNavigationPid}
+        metaNavigationPid = {$plugin.tx_gfusitepackage.settings.footerNavigationPid}
+        siteTitle = siteSettings:siteTitle
     }
 
     partialRootPaths.10 = {$plugin.tx_gfusitepackage.view.partialRootPath}
@@ -66,12 +70,15 @@ page.10 {
         myTemplateVar = COA
         myTemplateVar {
             10 = TEXT
-            10.value = simple COA template var
-            20 = TEXT
-            20.value = annother simple template var
+            10.value = simple COA var
         }
+
         anyOtherTemplateVar = TEXT
-        anyOtherTemplateVar.value = anyValue
+        anyOtherTemplateVar.value = simple TEXT content object var
+
+        # access a value from Site Settings
+        siteTitle = TEXT
+        siteTitle.data = siteSettings:siteTitle
     }
 }
 

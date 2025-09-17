@@ -8,4 +8,4 @@ editor:
   config:
     htmlSupport:
       allow:
-        - { name: 'img', attributes: true, classes: true, styles: true }
+        - { name: "img", attributes: true, classes: true, styles: true }

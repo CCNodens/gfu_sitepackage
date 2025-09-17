@@ -1,7 +1,10 @@
+
+
+
 plugin.tx_gfusitepackage {
     settings {
         # cat=plugin.tx_gfusitepackage/typo; type=int+; label=Overall site title
-        siteTitle = GFU Beispielseite
+        siteTitle = GFU Admins
 
         # cat=plugin.tx_gfusitepackage/links; type=int+; label=Page pid for meta navigation pages
         metaNavigationPid = 1
@@ -11,6 +14,9 @@ plugin.tx_gfusitepackage {
 
         # cat=plugin.tx_gfusitepackage/file; type=string; label=Path to Logo file
         siteLogo = EXT:gfu_sitepackage/Resources/Public/Images/Logo/logo.svg
+
+        # cat=plugin.tx_gfusitepackage/file; type=string; label=Path to Favicon
+        siteFavicon = EXT:gfu_sitepackage/Resources/Public/Images/Favicon/favicon.ico
 
         # cat=plugin.tx_gfusitepackage/links; type=int+; label=Parent page pid for main navigation to start from
         startPagePid = 1

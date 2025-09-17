@@ -1,82 +1,82 @@
 <html
-    xmlns="http://www.w3.org/1999/xhtml"
-    lang="en"
-    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-    data-namespace-typo3-fluid="true"
+        xmlns="http://www.w3.org/1999/xhtml"
+        lang="en"
+        xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+        data-namespace-typo3-fluid="true"
 >
 
-    <nav class="f3-widget-paginator flex items-center justify-center" aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:page_pagination')}">
-        <ul class="flex gap-4">
-            <f:if
+<nav class="f3-widget-paginator flex items-center justify-center" aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:page_pagination')}">
+    <ul class="flex gap-4">
+        <f:if
                 condition="({pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber})"
-            >
-                <f:then>
+        >
+            <f:then>
                 <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center">
                     <a
-                        class="text-(--styling-navigation-pagination-arrow-enabled) hover:text-(--styling-navigation-pagination-arrow-hover) disabled:text-(--styling-navigation-pagination-arrow-disabled) focus:text-(--styling-navigation-pagination-arrow-focus)"
-                        role="button"
-                        href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber},addQueryString:'untrusted')}"
-                        title="{f:translate(key:'widget.pagination.previous', extensionName: 'news')}"
-                        aria-label="{f:translate(key:'widget.pagination.previous', extensionName: 'news')}"
-                        >
-                        <svg class="w-full h-full fill-current rotate-180" preserveAspectRatio="xMaxYMin"  viewBox="0 0 33 32">
-                          <path d="M23.3 15.399c-0.060-0.080-0.12-0.14-0.2-0.2l-12-9c-0.44-0.33-1.070-0.24-1.4 0.2-0.13 0.17-0.2 0.38-0.2 0.6v18c0 0.55 0.45 1 1 1 0.22 0 0.43-0.070 0.6-0.2l12-9c0.44-0.33 0.53-0.96 0.2-1.4z" ></path>
+                            class="text-(--styling-navigation-pagination-arrow-enabled) hover:text-(--styling-navigation-pagination-arrow-hover) disabled:text-(--styling-navigation-pagination-arrow-disabled) focus:text-(--styling-navigation-pagination-arrow-focus)"
+                            role="button"
+                            href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber},addQueryString:'untrusted')}"
+                            title="{f:translate(key:'widget.pagination.previous', extensionName: 'news')}"
+                            aria-label="{f:translate(key:'widget.pagination.previous', extensionName: 'news')}"
+                    >
+                        <svg class="w-full h-full fill-current rotate-180" preserveAspectRatio="xMaxYMin" viewBox="0 0 33 32">
+                            <path d="M23.3 15.399c-0.060-0.080-0.12-0.14-0.2-0.2l-12-9c-0.44-0.33-1.070-0.24-1.4 0.2-0.13 0.17-0.2 0.38-0.2 0.6v18c0 0.55 0.45 1 1 1 0.22 0 0.43-0.070 0.6-0.2l12-9c0.44-0.33 0.53-0.96 0.2-1.4z"></path>
                         </svg>
                     </a>
                 </li>
-                </f:then>
-                <f:comment>
-                    <!--
-                <f:else>
-                    <li class="h-(--pagination-square-height) w-(--pagination-square-height)  flex items-center justify-center bg-(--styling-navigation-pagination-numbers-fill-enabled) text-(--styling-navigation-pagination-numbers-text-enabled) ">
-                        <a aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:empty_prev')}" class="">...</a>
-                    </li>
-                </f:else>
-                 -->
-                </f:comment>
-            </f:if>
-            <f:for each="{pagination.allPageNumbers}" as="page">
-                <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center cursor-pointer transition-all bg-(--styling-navigation-pagination-numbers-fill-enabled) text-(--styling-navigation-pagination-numbers-text-enabled) hover:bg-(--styling-navigation-pagination-numbers-fill-hover) hover:text-(--styling-navigation-pagination-numbers-text-hover) focus:bg-(--styling-navigation-pagination-numbers-fill-focus) focus:text-(--styling-navigation-pagination-numbers-text-focus)  {f:if(condition: '{page} == {paginator.currentPageNumber}', then:' !bg-(--styling-navigation-pagination-numbers-fill-active) !text-(--styling-navigation-pagination-numbers-text-active) pointer-events-none')}">
-                    <f:variable name="currentAttribute" value="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'aria-current=page')}"></f:variable>
-                    <a
+            </f:then>
+            <f:comment>
+                <!--
+            <f:else>
+                <li class="h-(--pagination-square-height) w-(--pagination-square-height)  flex items-center justify-center bg-(--styling-navigation-pagination-numbers-fill-enabled) text-(--styling-navigation-pagination-numbers-text-enabled) ">
+                    <a aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:empty_prev')}" class="">...</a>
+                </li>
+            </f:else>
+             -->
+            </f:comment>
+        </f:if>
+        <f:for each="{pagination.allPageNumbers}" as="page">
+            <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center cursor-pointer transition-all bg-(--styling-navigation-pagination-numbers-fill-enabled) text-(--styling-navigation-pagination-numbers-text-enabled) hover:bg-(--styling-navigation-pagination-numbers-fill-hover) hover:text-(--styling-navigation-pagination-numbers-text-hover) focus:bg-(--styling-navigation-pagination-numbers-fill-focus) focus:text-(--styling-navigation-pagination-numbers-text-focus)  {f:if(condition: '{page} == {paginator.currentPageNumber}', then:' !bg-(--styling-navigation-pagination-numbers-fill-active) !text-(--styling-navigation-pagination-numbers-text-active) pointer-events-none')}">
+                <f:variable name="currentAttribute" value="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'aria-current=page')}"></f:variable>
+                <a
                         href="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'#', else: '{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:\'untrusted\')}')}"
                         class=""
                         aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:page')} {page}"
                         {currentAttribute}
-                        >{page}</a
-                    >
-                </li>
-            </f:for>
-            <f:if
+                >{page}</a
+                >
+            </li>
+        </f:for>
+        <f:if
                 condition="({pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber})"
-            >
-                <f:then>
-                    <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center">
-                        <a
+        >
+            <f:then>
+                <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center">
+                    <a
                             class="text-(--styling-navigation-pagination-arrow-enabled) hover:text-(--styling-navigation-pagination-arrow-hover) disabled:text-(--styling-navigation-pagination-arrow-disabled) focus:text-(--styling-navigation-pagination-arrow-focus)"
                             role="button"
                             href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber},addQueryString:'untrusted')}"
                             aria-label="{f:translate(key:'widget.pagination.next', extensionName: 'news')}"
                             title="{f:translate(key:'widget.pagination.next', extensionName: 'news')}"
                             {next_disabled}
-                        >
-                          <svg class="w-full h-full fill-current"  preserveAspectRatio="xMaxYMin"  viewBox="0 0 33 32">
-                            <path class="w-full h-full" d="M23.3 15.399c-0.060-0.080-0.12-0.14-0.2-0.2l-12-9c-0.44-0.33-1.070-0.24-1.4 0.2-0.13 0.17-0.2 0.38-0.2 0.6v18c0 0.55 0.45 1 1 1 0.22 0 0.43-0.070 0.6-0.2l12-9c0.44-0.33 0.53-0.96 0.2-1.4z" ></path>
-                          </svg>
-                        </a>
-                    </li>
-                </f:then>
-                <f:comment>
-                    <!--
-                <f:else>
-                    <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center bg-(--styling-navigation-pagination-numbers-fill-enabled) text-(--styling-navigation-pagination-numbers-text-enabled) ">
-                        <a aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:empty_next')}" class="">...</a>
-                    </li>
-                </f:else>
-                    -->
-                </f:comment>
+                    >
+                        <svg class="w-full h-full fill-current" preserveAspectRatio="xMaxYMin" viewBox="0 0 33 32">
+                            <path class="w-full h-full" d="M23.3 15.399c-0.060-0.080-0.12-0.14-0.2-0.2l-12-9c-0.44-0.33-1.070-0.24-1.4 0.2-0.13 0.17-0.2 0.38-0.2 0.6v18c0 0.55 0.45 1 1 1 0.22 0 0.43-0.070 0.6-0.2l12-9c0.44-0.33 0.53-0.96 0.2-1.4z"></path>
+                        </svg>
+                    </a>
+                </li>
+            </f:then>
+            <f:comment>
+                <!--
+            <f:else>
+                <li class="h-(--pagination-square-height) w-(--pagination-square-height) flex items-center justify-center bg-(--styling-navigation-pagination-numbers-fill-enabled) text-(--styling-navigation-pagination-numbers-text-enabled) ">
+                    <a aria-label="{f:translate(key: 'LLL:EXT:vnc_sitepackage/SubPackages/fluid_styled_content/Resources/Private/Language/aria-label.xlf:empty_next')}" class="">...</a>
+                </li>
+            </f:else>
+                -->
+            </f:comment>
 
-            </f:if>
-        </ul>
-    </nav>
+        </f:if>
+    </ul>
+</nav>
 </html>
