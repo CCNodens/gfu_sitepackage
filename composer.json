@@ -18,6 +18,7 @@
 		"georgringer/news": "^12.3",
 		"gfu/gfu_sitepackage": "^13",
 		"helhum/typo3-console": "^8.2",
+		"netresearch/rte-ckeditor-image": "^13.0",
 		"typo3/cms-backend": "^13.4",
 		"typo3/cms-belog": "^13.4",
 		"typo3/cms-beuser": "^13.4",
@@ -45,8 +46,7 @@
 		"typo3/cms-sys-note": "^13.4",
 		"typo3/cms-tstemplate": "^13.4",
 		"typo3/cms-viewpage": "^13.4",
-		"typo3/cms-webhooks": "^13.4",
-		"vancado/vnc-news": "^13"
+		"typo3/cms-webhooks": "^13.4"
 	},
 	"repositories": [
 		{

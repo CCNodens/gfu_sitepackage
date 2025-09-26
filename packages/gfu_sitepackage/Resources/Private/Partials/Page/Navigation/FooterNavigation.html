@@ -5,35 +5,7 @@
 
         <div class="relative flex justify-center">
             <div class="absolute -top-[22px] px-4 bg-(--global-color-bw-white)">
-                <ul class="flex gap-4 justify-center items-center text-[color:var(--global-color-primary-primary-100)]">
-                    <f:if condition="{settings.linkInstagram}">
-                        <li class="w-12 h-12 flex items-center justify-center">
-                            <a class="group" href="{settings.linkInstagram}" target="_blank" aria-label="Instagram">
-                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                                    <use xlink:href="{f:uri.resource(path:'{settings.svgSpriteFile}', extensionName: 'vnc_sitepackage')}#icon-logo-instagram" />
-                                </svg>
-                            </a>
-                        </li>
-                    </f:if>
-                    <f:if condition="{settings.linkYoutube}">
-                        <li class="w-12 h-12 flex items-center justify-center">
-                            <a class="group" href="{settings.linkYoutube}" target="_blank" aria-label="YouTube">
-                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                                    <use xlink:href="{f:uri.resource(path:'{settings.svgSpriteFile}', extensionName: 'vnc_sitepackage')}#icon-logo-youtube" />
-                                </svg>
-                            </a>
-                        </li>
-                    </f:if>
-                    <f:if condition="{settings.linkFacebook}">
-                        <li class="w-12 h-12 flex items-center justify-center">
-                            <a class="group" href="{settings.linkFacebook}" target="_blank" aria-label="Facebook">
-                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                                    <use xlink:href="{f:uri.resource(path:'{settings.svgSpriteFile}', extensionName: 'vnc_sitepackage')}#icon-logo-facebook" />
-                                </svg>
-                            </a>
-                        </li>
-                    </f:if>
-                </ul>
+
             </div>
         </div>
 

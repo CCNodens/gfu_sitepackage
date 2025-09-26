@@ -7,25 +7,16 @@
         <div class="flex flex-col h-full">
             <div class="h-full p-6 order-1 lg:px-6 bg-(--styling-background-light)">
                 <div class="flex flex-col gap-6 justify-between h-full card">
-                    <f:variable
-                        name="newsItemId"
-                        value="newsItem-{newsItem.uid}"
-                    ></f:variable>
-
+                    <f:variable  name="newsItemId">newsItem-{newsItem.uid}</f:variable>
                     <div class="flex flex-col gap-4 lg:gap-2">
                         <div class="flex items-center gap-2 text-xxs">
-                            <time
-                                class=""
-                                datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}"
-                            >
-                                <f:format.date format="d.m.Y"
-                                    >{newsItem.datetime}</f:format.date
-                                ></time
-                            >
+                            <time class="" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                                <f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+                            </time>
                         </div>
-                          <p id="{newsItemId}-title" class="headline-xs text-center text-(--global-color-primary-primary-200)! md:headline-s lg:headline-m">
+                          <h2 id="{newsItemId}-title" class="headline-xs text-center text-(--global-color-primary-primary-200)! md:headline-s lg:headline-m">
                             {newsItem.title}
-                        </p>
+                        </h2>
                         <div class="text-center">
                             <f:if condition="{newsItem.teaser}">
                                 <f:then>
@@ -63,9 +54,7 @@
                 <f:if condition="{newsItem.mediaPreviews}">
                     <f:then>
                         <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
-                            <f:if
-                                condition="{mediaElement.originalResource.type} == 2"
-                            >
+                            <f:if condition="{mediaElement.originalResource.type} == 2">
                                 <f:image
                                     image="{mediaElement}"
                                     class="img-fluid"
@@ -76,17 +65,10 @@
                                     maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
                                 />
                             </f:if>
-                            <f:if
-                                condition="{mediaElement.originalResource.type} == 4"
-                            >
-                                <f:render
-                                    partial="Detail/MediaVideo"
-                                    arguments="{mediaElement: mediaElement}"
-                                />
+                            <f:if condition="{mediaElement.originalResource.type} == 4">
+                                <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}" />
                             </f:if>
-                            <f:if
-                                condition="{mediaElement.originalResource.type} == 5"
-                            >
+                            <f:if condition="{mediaElement.originalResource.type} == 5">
                                 <f:image
                                     image="{mediaElement}"
                                     class=""
@@ -94,8 +76,7 @@
                                     alt="{mediaElement.originalResource.alternative}"
                                     loading="{settings.list.media.image.lazyLoading}"
                                     maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
-                                    maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
-                                />
+                                    maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" />
                             </f:if>
                         </f:alias>
                     </f:then>
@@ -108,8 +89,7 @@
                                 alt=""
                                 loading="{settings.list.media.image.lazyLoading}"
                                 maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
-                                maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
-                            />
+                                maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" />
                         </f:if>
                     </f:else>
                 </f:if>

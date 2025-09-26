@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef6af0123dbf7f02174c3326bbac94a0",
+    "content-hash": "7b49c909bfe96fe8af2ca000b1e66a78",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -913,78 +913,6 @@
             "time": "2025-08-27T06:25:50+00:00"
         },
         {
-            "name": "georgringer/numbered-pagination",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/georgringer/numbered_pagination.git",
-                "reference": "0d287bb6d298519829dc689b2629a112950e94f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/georgringer/numbered_pagination/zipball/0d287bb6d298519829dc689b2629a112950e94f2",
-                "reference": "0d287bb6d298519829dc689b2629a112950e94f2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.3",
-                "typo3/cms-core": "^9 || ^10 || ^11 || ^12 || ^13"
-            },
-            "replace": {
-                "typo3-ter/numbered-pagination": "self.version"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "numbered_pagination"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GeorgRinger\\NumberedPagination\\": "Classes"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Georg Ringer",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Improved pagination for TYPO3",
-            "homepage": "https://github.com/georgringer/numbered_pagination",
-            "keywords": [
-                "pagination",
-                "typo3"
-            ],
-            "support": {
-                "issues": "https://github.com/georgringer/numbered_pagination/issues",
-                "source": "https://github.com/georgringer/numbered_pagination/tree/2.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/GeorgRinger/10",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.amazon.de/hz/wishlist/ls/8F573K08TSDG",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/georgringer",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/georgringer",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2024-10-20T10:52:10+00:00"
-        },
-        {
             "name": "gfu/gfu_sitepackage",
             "version": "13.4.1",
             "dist": {
@@ -1562,62 +1490,6 @@
             "time": "2024-12-27T16:56:20+00:00"
         },
         {
-            "name": "internetgalerie/ig-slug",
-            "version": "v1.1.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/internetgalerie/ig_slug.git",
-                "reference": "a527b26304154ce3fe1d63f93df8a80f314d5c83"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/internetgalerie/ig_slug/zipball/a527b26304154ce3fe1d63f93df8a80f314d5c83",
-                "reference": "a527b26304154ce3fe1d63f93df8a80f314d5c83",
-                "shasum": ""
-            },
-            "require": {
-                "typo3/cms-core": "^12 || ^13"
-            },
-            "replace": {
-                "typo3-ter/ig-slug": "self.version"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "ig_slug"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ig\\IgSlug\\": "Classes"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Abplanalp",
-                    "homepage": "https://www.internetgalerie.ch",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Rebuild URL slugs",
-            "homepage": "https://www.internetgalerie.ch",
-            "keywords": [
-                "extension",
-                "slug",
-                "typo3",
-                "url"
-            ],
-            "support": {
-                "issues": "https://github.com/internetgalerie/ig_slug/issues",
-                "source": "https://github.com/internetgalerie/ig_slug/tree/v1.1.7"
-            },
-            "time": "2025-06-13T15:26:04+00:00"
-        },
-        {
             "name": "lolli42/finediff",
             "version": "1.1.1",
             "source": {
@@ -1748,6 +1620,65 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.10.0"
             },
             "time": "2025-07-25T09:04:22+00:00"
+        },
+        {
+            "name": "netresearch/rte-ckeditor-image",
+            "version": "13.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netresearch/t3x-rte_ckeditor_image.git",
+                "reference": "ac95fd673ea128a784ea049d328a8898ee97d5d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netresearch/t3x-rte_ckeditor_image/zipball/ac95fd673ea128a784ea049d328a8898ee97d5d3",
+                "reference": "ac95fd673ea128a784ea049d328a8898ee97d5d3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "typo3/cms-backend": "^13.4",
+                "typo3/cms-core": "^13.4",
+                "typo3/cms-extbase": "^13.4",
+                "typo3/cms-frontend": "^13.4",
+                "typo3/cms-rte-ckeditor": "^13.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.61",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "squizlabs/php_codesniffer": "^3.7",
+                "typo3/testing-framework": "^9.0"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "web-dir": ".Build/Web",
+                    "extension-key": "rte_ckeditor_image"
+                },
+                "branch-alias": {
+                    "dev-main": "13.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Netresearch\\RteCKEditorImage\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "description": "Image support in CKEditor for the TYPO3 ecosystem",
+            "homepage": "https://github.com/netresearch/t3x-rte_ckeditor_image",
+            "support": {
+                "issues": "https://github.com/netresearch/t3x-rte_ckeditor_image/issues",
+                "source": "https://github.com/netresearch/t3x-rte_ckeditor_image/tree/13.0.0"
+            },
+            "time": "2025-01-08T15:23:50+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7597,42 +7528,6 @@
                 "source": "https://github.com/TYPO3/Fluid"
             },
             "time": "2025-08-28T12:02:19+00:00"
-        },
-        {
-            "name": "vancado/vnc-news",
-            "version": "13.4.2",
-            "dist": {
-                "type": "path",
-                "url": "./packages/vnc_news",
-                "reference": "dd3c00397fa2f3c4d0664699c20279395c7e2d4b"
-            },
-            "require": {
-                "ext-dom": "*",
-                "ext-simplexml": "*",
-                "georgringer/news": "^12.3",
-                "georgringer/numbered-pagination": "^2.1",
-                "internetgalerie/ig-slug": "^1.1",
-                "php": ">=8.2",
-                "typo3/cms-core": "^13.4"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "vnc_news"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vancado\\VncNews\\": "Classes/"
-                }
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Import posts from WP to news records. Support img tags in RTE. Additional ajax list view for TYPO3 News",
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "webmozart/assert",

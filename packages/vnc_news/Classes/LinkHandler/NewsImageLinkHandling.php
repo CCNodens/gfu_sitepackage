@@ -17,7 +17,7 @@ class NewsImageLinkHandling implements LinkHandlerInterface
     public function asString(array $parameters): string
     {
         $imgfile = (int)$parameters['file'];
-        return $this->baseUrn . '?uid=' . $imgfile;
+        return $this->baseUrn . '?uid=' . $imgfile.'&test=123';
     }
 
     public function resolveHandlerData(array $data): array
