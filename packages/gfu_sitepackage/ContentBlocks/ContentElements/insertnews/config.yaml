@@ -1,0 +1,32 @@
+name: gfu-sitepackage/insertnews
+typeName: gfu_insertnews
+group: default
+prefixFields: true
+prefixType: full
+identifier: 'gfu/insertnews'
+label: 'GfU Newsauswahl'
+template:
+  path: 'EXT:gfu_sitepackage/ContentBlocks/ContentElements/gfu/templates/frontend.html'
+  backendPreview:
+    template: 'EXT:gfu_sitepackage/ContentBlocks/ContentElements/gfu/templates/backend-preview.html'
+
+metadata:
+  name: 'GfU Newsauswahl'
+  description: 'Wähle bis zu fünf Newsartikel aus und zeige sie im Frontend an.'
+
+fields:
+  header:
+    identifier: header
+    useExistingField: true
+  records:
+    identifier: records
+    useExistingField: true
+    label: 'Ausgewählte News (max. 5)'
+    config:
+      allowedTables:
+        - 'tx_news_domain_model_news'
+      maxItems: 5
+      minItems: 0
+      appearance:
+        allowSorting: true
+

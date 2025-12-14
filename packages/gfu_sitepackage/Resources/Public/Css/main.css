@@ -9,3 +9,14 @@ main {
 .gfu-logo > svg.logo {
     fill:#ffffff!important;
 }
+
+.extbase-debugger-floating {
+    top:100px;
+    z-index: 1;
+}
+
+.extbase-debugger {
+
+    position: relative;
+    z-index: 1000000;
+}

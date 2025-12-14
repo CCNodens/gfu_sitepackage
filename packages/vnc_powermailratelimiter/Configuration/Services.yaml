@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Vancado\VncPowermailratelimiter\:
+    resource: '../Classes/*'
+
+  # Die Middleware muss ein öffentlicher Dienst sein, damit der Middleware-Dispatcher sie finden kann.
+  Vancado\VncPowermailratelimiter\Middleware\PowermailRateLimiter:
+    public: true
+  # Service-Konfiguration für den Cache-Zugriff
+  cache.vnc_ratelimit_cache:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments: ['vnc_ratelimit_cache']

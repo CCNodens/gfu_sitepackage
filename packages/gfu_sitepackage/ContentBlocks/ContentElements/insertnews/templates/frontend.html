@@ -1,0 +1,11 @@
+<h1>hello world</h1>
+<f:debug>{data.records}</f:debug>
+Frontend template for Content Block: typo3/gfu<br>
+Header: {data.records}
+
+<f:for each="{items}" as="item" iteration="iterator">
+<p>{iterator.index}</p>
+    <f:debug>{item}</f:debug>
+
+</f:for>
+

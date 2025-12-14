@@ -1,0 +1,17 @@
+tt_content {
+    gfu_insertnews {
+        file = EXT:site_package/ContentBlocks/ContentElements/insertnews/templates/frontend.html
+        layoutRootPaths {
+            120 = EXT:site_package/ContentBlocks/ContentElements/insertnews/templates/layouts/
+        }
+        partialRootPaths {
+            120 = EXT:gfu_sitepackage/ContentBlocks/ContentElements/insertnews/templates/partials/
+        }
+        variables.shortcuts = RECORDS
+        variables.shortcuts {
+            source.field = records
+            tables = {$styles.content.shortcut.tables}
+        }
+    }
+}
+

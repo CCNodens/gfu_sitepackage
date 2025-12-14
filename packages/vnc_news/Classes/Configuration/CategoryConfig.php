@@ -4,19 +4,24 @@ declare(strict_types=1);
 
 namespace Vancado\VncNews\Configuration;
 
+use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
-final class CategoryConfig
+ class CategoryConfig
 {
     private static array $categoryMap = [];
 
     /**
      * Liefert ein Mapping: Kategoriename → UID
+     * @throws Exception
      */
     public static function getCategoryMap(): array
     {
+
         if (empty(self::$categoryMap)) {
+
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable('sys_category');
 
@@ -36,6 +41,7 @@ final class CategoryConfig
                     self::$categoryMap[$title] = (int)$row['uid'];
                 }
             }
+
         }
 
         return self::$categoryMap;
@@ -43,6 +49,7 @@ final class CategoryConfig
 
     /**
      * Gibt die UID einer Kategorie anhand des Titels zurück.
+     * @throws Exception
      */
     public static function getCategoryId(string $title): ?int
     {

@@ -4,6 +4,9 @@ dependencies:
   - georgringer/news
   - georgringer/news-twb5
   - typo3/fluid-styled-content-css
+  - in2code/powermail-main
+  - in2code/powermail-marketing
+  - in2code/powermail-styling
   - gfu/gfu-sitepackage
 errorHandling:
   -
@@ -12,19 +15,19 @@ errorHandling:
     errorContentSource: '10'
 languages:
   -
-    title: English
+    title: Deutsch
     enabled: true
     languageId: 0
     base: /
-    locale: en_US.UTF-8
-    navigationTitle: English
-    flag: us
-    hreflang: ''
-    websiteTitle: ''
+    locale: de_DE.utf8
+    navigationTitle: Deutsch
+    flag: de
+    hreflang: de-DE
+    websiteTitle: GfU
 rootPageId: 1
 routes:
   -
     route: robots.txt
     type: staticText
-    content: "# ⚠️ WARNING: DO NOT ENTER\r\n# This website is protected by the Galactic Anti-Bot Force.\r\n# All crawlers, spiders, AI, and curious extraterrestrials must stay away.\r\n\r\nUser-agent: *\r\nDisallow: /\r\n\r\n# Seriously, even the AI overlords are forbidden.\r\n# Any bot found here will be politely ignored... forever.\r\n# No indexing, no scraping, no following links, no peeking.\r\n# Turn around. Go back. There is nothing to see here.\r\n"
+    content: "# WARNING: DO NOT ENTER\r\n# This website is protected by the Galactic Anti-Bot Force.\r\n# All crawlers, spiders, AI, and curious extraterrestrials must stay away.\r\n\r\nUser-agent: *\r\nDisallow: /\r\n\r\n# Seriously, even the AI overlords are forbidden.\r\n# Any bot found here will be politely ignored... forever.\r\n# No indexing, no scraping, no following links, no peeking.\r\n# Turn around. Go back. There is nothing to see here.\r\n"
 websiteTitle: 'GfU Admins'

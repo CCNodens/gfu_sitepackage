@@ -1,3 +1,4 @@
+/*
 TCEMAIN.linkHandler {
     newsimage {
         handler = Vancado\VncNews\LinkHandler\NewsImageLinkHandler
@@ -9,4 +10,4 @@ TCEMAIN.linkHandler {
             action = image
         }
     }
-}
+}*/

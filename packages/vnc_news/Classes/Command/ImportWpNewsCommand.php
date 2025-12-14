@@ -6,6 +6,7 @@ namespace Vancado\VncNews\Command;
 
 use DateTimeImmutable;
 use DateTimeZone;
+use Doctrine\DBAL\Exception;
 use DOMDocument;
 use SimpleXMLElement;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -20,6 +21,8 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Site\SiteFinder;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use \Vancado\VncNews\Configuration\CategoryConfig;
 
 #[AsCommand(
     name: 'vnc:import-wp-news',
@@ -27,26 +30,12 @@ use \TYPO3\CMS\Core\Site\SiteFinder;
 )]
 final class ImportWpNewsCommand extends Command
 {
-    /** Feste Zuordnung: WP-Kategoriename → sys_category.uid */
-    private const CATEGORY_MAP = [
-        'Allgemein' => 1,
-        'Genuss' => 2,
-        'Menschen' => 3,
-        'Nützlich' => 4,
-        'Pflanzen' => 5,
-        'Schön' => 6,
-    ];
-
-    private const DESTINATION_MAP = [
-        'wp-dir' => '/wp-content/uploads/',
-        'typo3-dir' => 'vnc_news'
-    ];
 
     private SiteFinder $site;
-
     private ConnectionPool $connectionPool;
     private ResourceFactory $resourceFactory;
-
+    private array $categoryMap;
+    private array $folderMap;
 
     public function __construct(
         ConnectionPool   $connectionPool,
@@ -58,6 +47,7 @@ final class ImportWpNewsCommand extends Command
         // Fallback, falls DI für ResourceFactory nicht greift
         $this->resourceFactory = $resourceFactory ?? GeneralUtility::makeInstance(ResourceFactory::class);
         $this->site = $site ?? GeneralUtility::makeInstance(SiteFinder::class);
+
     }
 
     protected function configure(): void
@@ -65,29 +55,40 @@ final class ImportWpNewsCommand extends Command
         $this
             ->addOption('file', null, InputOption::VALUE_REQUIRED, 'Absolute path to the WordPress XML (WXR) export file')
             ->addOption('wpdomain', null, InputOption::VALUE_REQUIRED, 'Domain name to substitute with current domain. eg my-blog.de')
+            ->addOption('sourcefolder', null, InputOption::VALUE_REQUIRED, 'Source folder for images from WP')
+            ->addOption('targetfolder', null, InputOption::VALUE_REQUIRED, 'Destination folder for images inside fileadmin')
             ->addOption('pid', null, InputOption::VALUE_OPTIONAL, 'Target storage PID for imported news (defaults to 0)', 0);
     }
 
+    /**
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $file = (string)($input->getOption('file') ?? '');
         $pid = (int)($input->getOption('pid') ?? 0);
         $oldHost = (string)($input->getOption('wpdomain') ?? '');
 
+        // Dynamisches Mapping von WP-Kategorien zu sys_category.uid über title feld
+        $this->categoryMap = \Vancado\VncNews\Configuration\CategoryConfig::getCategoryMap();
+
+        // Quell- und Zielverzeichnisse
+        $this->folderMap = [
+            'wp-dir' => (string)($input->getOption('sourcefolder')),
+            'typo3-dir' => (string)($input->getOption('targetfolder'))
+        ];
+
+
         try {
             $currentHost = $this->site->getSiteByPageId($pid)->getBase()->getHost();
+        } catch (SiteNotFoundException $e) {
         }
-        catch (SiteNotFoundException $e) {
-        }
-
-        #var_dump($this->site->getSiteByPageId($pid)->getBase()->getHost());
-       # die();
 
         if ($file === '' || !is_file($file) || !is_readable($file)) {
             $output->writeln('<error>ERROR: Please pass a readable file via --file="/absolute/path/to/export.xml"</error>');
             $output->writeln('');
             $output->writeln('<info>Usage:</info>');
-            $output->writeln('  typo3 vnc:import-wp-news --file="var/import/export.xml" [--pid=123] [--wp-domain=my-blog.com]');
+            $output->writeln('   typo3 vnc:import-wp-news --file="var/export/beitraege.xml" --sourcefolder=wp-content/uploads --targetfolder=vnc_news [--pid=123] [--wp-domain=my-blog.com]');
             return Command::FAILURE;
         }
         if ($pid < 0) {
@@ -439,8 +440,8 @@ final class ImportWpNewsCommand extends Command
                 if ($title === '') {
                     continue;
                 }
-                if (array_key_exists($title, self::CATEGORY_MAP)) {
-                    $uids[] = (int)self::CATEGORY_MAP[$title];
+                if (array_key_exists($title, $this->categoryMap)) {
+                    $uids[] = (int)$this->categoryMap[$title];
                 } else {
                     $unknown[] = $title;
                 }
@@ -454,13 +455,13 @@ final class ImportWpNewsCommand extends Command
         return [$uids, $unknown];
     }
 
-    private function substituteBodytextHostnames(string $bodytext, string $oldHost = '', string $newHost = ''): string
+    private function substituteBodytextHostnames(string $bodytext, string $oldHost = '', string $newHost = 'domain.de'): string
     {
         $newHost = trim($newHost);
         $oldHost = trim($oldHost);
         $_storage = '/fileadmin/'; //@ToDo: get storage from api
-        if($newHost !=='' || $oldHost !=='') {
-           $bodytext = str_replace($oldHost.self::DESTINATION_MAP['wp-dir'], $newHost.$_storage.self::DESTINATION_MAP['typo3-dir'].'/', $bodytext);
+        if ($newHost !== '' || $oldHost !== '') {
+            $bodytext = str_replace($oldHost . '/' . $this->folderMap['wp-dir'] . '/', $newHost . $_storage .$this->folderMap['typo3-dir']. '/', $bodytext);
         }
         return $bodytext;
     }
@@ -543,13 +544,13 @@ final class ImportWpNewsCommand extends Command
         if ($path === '') {
             return null;
         }
-        $pos = strpos($path, self::DESTINATION_MAP['wp-dir']);
+        $pos = strpos($path, $this->folderMap['wp-dir']);
         if ($pos === false) {
             $basename = basename($path);
-            return $basename !== '' ? '/' . self::DESTINATION_MAP['typo3-dir'] . '/' . $basename : null;
+            return $basename !== '' ? '/' . $this->folderMap['typo3-dir'] . '/' . $basename : null;
         }
-        $suffix = ltrim(substr($path, $pos + strlen(self::DESTINATION_MAP['wp-dir'])), '/');
-        return '/' . self::DESTINATION_MAP['typo3-dir'] . '/' . $suffix;
+        $suffix = ltrim(substr($path, $pos + strlen($this->folderMap['wp-dir'])), '/');
+        return '/' . $this->folderMap['typo3-dir'] . '/' . $suffix;
     }
 
     /** sys_file.uid für Identifier im DEFAULT Storage ermitteln */

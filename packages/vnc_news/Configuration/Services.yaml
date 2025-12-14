@@ -13,7 +13,6 @@ services:
         command: 'vnc-news:import-wp-news'
         description: 'Imports WordPress WXR (XML)'
         schedulable: true
-  Vancado\VncNews\LinkHandler\NewsImageLinkHandler:
+  Vancado\VncNews\Configuration\CategoryConfig:
     public: true
-    # The link handler keeps a state and can therefore be no singleton
-    shared: false
+
